@@ -1,22 +1,26 @@
 # Hacker News Top Story Extractor
 
-This repository contains a Python script (`top_hn_story.py`) that extracts the title, link, and points of the top story on Hacker News.
+This repository contains a Python web app that displays the top stories from Hacker News, including the title, link, points, author, and number of comments.
 
 ## Usage
 
 1. **Install dependencies:**
    ```bash
-   pip install requests beautifulsoup4
+   pip install flask requests beautifulsoup4
    ```
 
-2. **Run the script:**
+2. **Run the app:**
    ```bash
-   python top_hn_story.py
+   python app.py
    ```
 
-## Output
+3. **View in browser:**
+   Open your web browser and go to `http://127.0.0.1:5000` to view the top stories.
 
-The script will print the title, link, and points of the top story to the console.
+## Features
+
+- Displays the top 5 stories from Hacker News.
+- Shows the title, link, points, author, and number of comments for each story.
 
 ## Contributing
 

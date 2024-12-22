@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Hacker News Stories</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .story { margin-bottom: 20px; }
+        .title { font-size: 1.2em; font-weight: bold; }
+        .meta { color: gray; }
+    </style>
+</head>
+<body>
+    <h1>Top Hacker News Stories</h1>
+    {% for story in stories %}
+    <div class="story">
+        <div class="title"><a href="{{ story.link }}">{{ story.title }}</a></div>
+        <div class="meta">{{ story.score }} points by {{ story.author }} | {{ story.comments }} comments</div>
+    </div>
+    {% endfor %}
+</body>
+</html>
