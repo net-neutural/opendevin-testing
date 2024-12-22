@@ -2,27 +2,37 @@ import requests
 from bs4 import BeautifulSoup
 
 def get_top_story():
-    url = "https://news.ycombinator.com"
-    response = requests.get(url)
-    response.raise_for_status()  # Raise an exception for bad status codes
+    try:
+        url = "https://news.ycombinator.com"
+        response = requests.get(url)
+        response.raise_for_status()
 
-    soup = BeautifulSoup(response.content, "html.parser")
-    top_story = soup.select_one("table#hnmain tr.athing:nth-of-type(1)")
+        soup = BeautifulSoup(response.content, "html.parser")
 
-    if top_story:
-        title_link = top_story.select_one("a.titlelink")
-        title = title_link.text
-        link = title_link["href"]
-        score = top_story.find_next_sibling("tr").select_one("span.score").text.split()[0]
+        score_element = soup.select_one("tr.athing + tr span.score")
+        if not score_element:
+            return "Could not find score element", None, None
+        score = score_element.text.split()[0]
+
+        title_link = soup.select_one("tr.athing:has(span.rank:contains('1.')) span.titleline > a")
+        if title_link:
+            title = title_link.text
+            link = title_link['href']
+        else:
+            return "Could not find title link", None, None
+
         return title, link, score
-    else:
-        return None, None, None
+
+    except requests.exceptions.RequestException as e:
+        return f"Error fetching Hacker News: {e}", None, None
+
 
 if __name__ == "__main__":
     title, link, score = get_top_story()
-    if title:
+
+    if isinstance(title, str) and title.startswith("Could not") or title.startswith("Error"):
+        print(title)
+    elif title:
         print(f"Title: {title}")
         print(f"Link: {link}")
         print(f"Points: {score}")
-    else:
-        print("Could not find the top story.")
