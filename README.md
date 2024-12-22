@@ -4,6 +4,8 @@ This repository contains a Python web app that displays the top stories from Hac
 
 ## Usage
 
+### Web App
+
 1. **Install dependencies:**
    ```bash
    pip install flask requests beautifulsoup4
@@ -16,6 +18,21 @@ This repository contains a Python web app that displays the top stories from Hac
 
 3. **View in browser:**
    Open your web browser and go to `http://127.0.0.1:5000` to view the top stories.
+
+### Text Chunking
+
+1. **Install dependencies:**
+   ```bash
+   pip install tiktoken
+   ```
+
+2. **Chunk the text file:**
+   ```bash
+   python chunk_text.py
+   ```
+
+3. **Output:**
+   The script will read `folder/file.txt`, split it into chunks of 2048 tokens, and save them as `chunk1.txt`, `chunk2.txt`, etc., in the `folder/` directory.
 
 ## Features
 
