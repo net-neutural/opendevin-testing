@@ -9,17 +9,17 @@ def get_top_story():
 
         soup = BeautifulSoup(response.content, "html.parser")
 
-        score_element = soup.select_one("tr.athing + tr span.score")
-        if not score_element:
-            return "Could not find score element", None, None
-        score = score_element.text.split()[0]
-
-        title_link = soup.select_one("tr.athing:has(span.rank:contains('1.')) span.titleline > a")
+        title_link = soup.select_one("span.titleline > a")
         if title_link:
             title = title_link.text
             link = title_link['href']
         else:
             return "Could not find title link", None, None
+
+        score_element = soup.select_one("span.score")
+        if not score_element:
+            return "Could not find score element", None, None
+        score = score_element.text.split()[0]
 
         return title, link, score
 
