@@ -1,18 +1,23 @@
 # Hacker News Top Story Extractor
 
-This repository contains a bash script (`top_hn_story.sh`) that attempts to extract the title, link, and points of the top story on Hacker News.
+This repository contains a Python script (`top_hn_story.py`) that extracts the title, link, and points of the top story on Hacker News.
 
 ## Usage
 
-```bash
-chmod +x top_hn_story.sh
-./top_hn_story.sh
-```
+1. **Install dependencies:**
+   ```bash
+   pip install requests beautifulsoup4
+   ```
 
-## Current Status
+2. **Run the script:**
+   ```bash
+   python top_hn_story.py
+   ```
 
-The script is currently not working reliably.  It successfully downloads the Hacker News homepage but struggles to correctly parse and extract the title, link, and points of the top story.  Further investigation and debugging are needed.
+## Output
+
+The script will print the title, link, and points of the top story to the console.
 
 ## Contributing
 
-Contributions to improve the script's reliability are welcome. Please open an issue or pull request with your proposed changes.
+Contributions to improve the script are welcome. Please open an issue or pull request with your proposed changes.
